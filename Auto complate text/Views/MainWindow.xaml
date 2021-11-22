@@ -1,0 +1,172 @@
+﻿<Window x:Class="Auto_complate_text.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Auto_complate_text" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="Auto compilation " MinHeight="1000" MinWidth="800" MaxHeight="1000" MaxWidth="800" Background="Bisque" Icon="t9.png">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="Lettertextbock" Text="Auto compilation with T9 keyboard" FontSize="35" Foreground="Purple" FontWeight="Black" Padding="85,25,0,0"> </TextBlock>
+            <TextBox x:Name="TextBox1" Grid.Row="1" Height="400" Width="700"  Margin="15,15,15,15" VerticalScrollBarVisibility="Auto" FontSize="40" FontWeight="Black" BorderBrush="Red" Foreground="Purple" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" TextWrapping="Wrap">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding ListboxFilterCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </TextBox>
+
+            <ListBox x:Name="listbox" Grid.Row="2" Margin="10" Padding="2" Background="Salmon" Foreground="Purple" FontSize="25" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" Visibility="Hidden" ItemsSource="{Binding Words}">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Text}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick" SourceName="listbox">
+                        <i:InvokeCommandAction Command="{Binding ListboxDoubleCLickCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ListBox>
+            
+            <Grid Grid.Row="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="SpaceButton" Grid.Column="0" Margin="5" Padding="5" Content="Space" FontSize="40" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding SpaceCommand}"></Button>
+                    <Button x:Name="AddButton" Grid.Column="1" Margin="5" Padding="5" Content="Add Auto Complate" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding AddAutoComplateCommand}">
+
+                        <Button.ToolTip>
+                            <Label Content="First select text and add list"></Label>
+                        </Button.ToolTip>
+                        
+                    </Button>
+                    <Button x:Name="UpperButton" Grid.Column="2" Margin="5" Padding="5" Content="Upper on" FontSize="40" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding UpperOnCommand}"></Button>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+
+                    <Grid.ToolTip>
+                        <Label Content="Left-click to select. Right-click to write."></Label>
+                    </Grid.ToolTip>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="Button1" Grid.Column="0" Grid.Row="0" Margin="5" Padding="5" Content="ABC 1" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding Button1Command}">
+                       
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+
+                        
+                    </Button>
+                    <Button x:Name="Button2" Grid.Column="1" Grid.Row="0" Margin="5" Padding="5" Content="DEF 2" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding Button2Command}">
+
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+                        
+                    </Button>
+                    <Button x:Name="Button3" Grid.Column="2" Grid.Row="0" Margin="5" Padding="5" Content="GHI 3" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding Button3Command}">
+
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+                        
+                    </Button>
+                    <Button x:Name="Button4" Grid.Column="0" Grid.Row="1" Margin="5" Padding="5" Content="JKL 4" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding Button4Command}">
+
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+
+                    </Button>
+                    <Button x:Name="Button5" Grid.Column="1" Grid.Row="1" Margin="5" Padding="5" Content="MNO 5" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding Button5Command}">
+
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+
+                    </Button>
+                    <Button x:Name="Button6" Grid.Column="2" Grid.Row="1" Margin="5" Padding="5" Content="PQR 6" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding Button6Command}">
+
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+
+                    </Button>
+                    <Button x:Name="Button7" Grid.Column="0" Grid.Row="2" Margin="5" Padding="5" Content="STU 7" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding Button7Command}">
+
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+
+                    </Button>
+                    <Button x:Name="Button8" Grid.Column="1" Grid.Row="2" Margin="5" Padding="5" Content="VW 8" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple"  Command="{Binding Button8Command}">
+
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+                        
+                    </Button>
+                    <Button x:Name="Button9" Grid.Column="2" Grid.Row="2" Margin="5" Padding="5" Content="XYZ 9 0" FontSize="20" FontWeight="Black" Background="Salmon" Foreground="Purple" Command="{Binding Button9Command}">
+                       
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="RightClick" Command="{Binding ButtonRightClickCommand}" />
+                        </Button.InputBindings>
+                        
+                    </Button>
+
+
+                </Grid>
+                
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>
