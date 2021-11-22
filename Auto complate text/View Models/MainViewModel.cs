@@ -496,7 +496,7 @@ namespace Auto_complate_text.View_Models
                     H = MainWindows.Button3.Content.ToString().IndexOf('h');
                     h = MainWindows.Button3.Content.ToString().ElementAt(H);
 
-                    I = MainWindows.Button3.Content.ToString().IndexOf('l');
+                    I = MainWindows.Button3.Content.ToString().IndexOf('i');
                     i = MainWindows.Button3.Content.ToString().ElementAt(I);
 
                     N3 = MainWindows.Button3.Content.ToString().IndexOf('3');
